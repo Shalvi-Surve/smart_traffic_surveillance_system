@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -225,6 +226,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="processed-media" id="processed-media" style="display:none; margin-top:20px;">
+                            <h3>Processed Output</h3>
+                            <img id="processed-image" style="max-width:100%; display:none;" />
+                            <video id="processed-video" controls style="max-width:100%; display:none;"></video>
+                        </div>
                     </div>
                     
                     <div class="processing-actions">
@@ -391,7 +397,7 @@
                             <i class="fas fa-print"></i> Print Report
                         </button>
                         <button class="btn btn-primary" id="export-report">
-                            <i class="fas fa-file-pdf"></i> Export as PDF
+                            <i class="fas fa-file-archive"></i> Download Full Report
                         </button>
                         <button class="btn btn-success" id="email-report">
                             <i class="fas fa-envelope"></i> Email Report
@@ -445,16 +451,12 @@
                     
                     <div class="dashboard-charts">
                         <div class="chart-container">
-                            <h3>Violations by Type</h3>
-                            <div class="chart" id="violations-chart">
-                                <!-- Chart will be created with JS -->
-                            </div>
+                            <h3>Speed Distribution</h3>
+                            <canvas id="speed-chart"></canvas>
                         </div>
                         <div class="chart-container">
-                            <h3>Traffic Volume by Hour</h3>
-                            <div class="chart" id="traffic-chart">
-                                <!-- Chart will be created with JS -->
-                            </div>
+                            <h3>Violations Timeline</h3>
+                            <canvas id="violations-timeline-chart"></canvas>
                         </div>
                     </div>
                     
@@ -548,8 +550,12 @@
 
     <!-- Loading Spinner -->
     <div class="loading-spinner" id="loading-spinner">
-        <div class="spinner"></div>
-        <p>Processing...</p>
+        <div class="traffic-light">
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+            <div class="light green"></div>
+        </div>
+        <p>Analyzing traffic... Red → Yellow → Green</p>
     </div>
 
     <script src="script.js"></script>

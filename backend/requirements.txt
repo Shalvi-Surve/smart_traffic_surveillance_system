@@ -7,3 +7,6 @@ pillow
 easyocr
 filterpy
 scikit-image
+pandas
+openpyxl
+matplotlib
